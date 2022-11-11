@@ -1,4 +1,6 @@
-import { takeLatest, put, all, call } from 'redux-saga/effects';
+import {
+    takeLatest, put, all, call,
+} from 'redux-saga/effects';
 
 import { USER_ACTION_TYPES } from './user.types';
 
@@ -25,7 +27,7 @@ export function* getSnapshotFromUserAuth(userAuth, additionalDetails) {
     const userSnapshot = yield call(
       createUserDocumentFromAuth,
       userAuth,
-      additionalDetails
+      additionalDetails,
     );
     yield put(signInSuccess({ id: userSnapshot.id, ...userSnapshot.data() }));
   } catch (error) {
@@ -47,7 +49,7 @@ export function* signInWithEmail({ payload: { email, password } }) {
     const { user } = yield call(
       signInAuthUserWithEmailAndPassword,
       email,
-      password
+      password,
     );
     yield call(getSnapshotFromUserAuth, user);
   } catch (error) {
@@ -70,7 +72,7 @@ export function* signUp({ payload: { email, password, displayName } }) {
     const { user } = yield call(
       createAuthUserWithEmailAndPassword,
       email,
-      password
+      password,
     );
     yield put(signUpSuccess(user, { displayName }));
   } catch (error) {

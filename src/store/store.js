@@ -23,18 +23,17 @@ const middleWares = [
   sagaMiddleware,
 ].filter(Boolean);
 
-const composeEnhancer =
-  (process.env.NODE_ENV !== 'production' &&
-    window &&
-    window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) ||
-  compose;
+const composeEnhancer = (process.env.NODE_ENV !== 'production'
+    && window
+    && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__)
+  || compose;
 
 const composedEnhancers = composeEnhancer(applyMiddleware(...middleWares));
 
 export const store = createStore(
   persistedReducer,
   undefined,
-  composedEnhancers
+  composedEnhancers,
 );
 
 sagaMiddleware.run(rootSaga);
