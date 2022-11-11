@@ -2,12 +2,12 @@
 import { AnyAction } from 'redux';
 
 // Type alias with multiple placeholders
-export type ActionWithPayload<T, P> = {
+export interface ActionWithPayload<T, P> {
     type: T;
     payload?: P;
 }
 
-export type Action<T> = {
+export interface Action<T> {
     type: T;
 }
 

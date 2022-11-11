@@ -16,3 +16,7 @@ export interface Category {
   imageUrl: string;
   items: CategoryItem[];
 }
+
+export interface CategoryMap {
+  [key: string]: CategoryItem[];
+}
